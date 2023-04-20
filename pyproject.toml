@@ -12,11 +12,11 @@ license = { text = "MIT" }
 dynamic = ["version", "dependencies"]
 
 [project.scripts]
-kdt = "main:main_cli"
+kdt = "kdt:main_cli"
 
 [options]
 exclude = ["tests"]
 
 [tool.setuptools.dynamic]
-version = { attr = "main.__version__" }
+version = { attr = "kdt.__version__" }
 dependencies = { file = "requirements.txt" }
