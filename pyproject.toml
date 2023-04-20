@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kdt"
+description = "All-in-One tooling for developing with Python."
+authors = [
+    {name = "Keenan W. Wilkinson", email = "keenanwilkinson@outlook.com"}
+]
+license = { text = "MIT" }
+dynamic = ["version", "dependencies"]
+
+[project.scripts]
+kdt = "main:main_cli"
+
+[options]
+exclude = ["tests"]
+
+[tool.setuptools.dynamic]
+version = { attr = "main.__version__" }
+dependencies = { file = "requirements.txt" }
