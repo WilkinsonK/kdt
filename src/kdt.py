@@ -6,6 +6,7 @@ Helper actions for submodule development.
 
 __version__ = (0, 0, 0)
 
+import importlib, pkgutil
 import pathlib, os, shutil, subprocess, sys
 import typing
 
@@ -91,6 +92,20 @@ class dir_context:
     def __exit__(self, t, v, tb):
         while len(self._dir_stack):
             self.pop()
+
+
+def find_plugins():
+    return {
+        name: importlib.import_module(name)
+        for finder, name, ispkg
+        in pkgutil.iter_modules()
+        if name.startswith('kdt_')
+    }
+
+
+def main():
+    find_plugins()
+    return main_cli()
 
 
 @click.group
@@ -193,4 +208,4 @@ def init(*, clean: bool):
   
 
 if __name__ == "__main__":
-    exit(main_cli())
+    exit(main())
